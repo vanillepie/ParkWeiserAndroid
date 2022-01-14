@@ -80,8 +80,7 @@ public class RegistroCocheActivity extends AppCompatActivity {
         }catch (InterruptedException e){}
     }
     public void confirmaRegistro(String response) throws JSONException {
-        // TODO comprobar si se pasa bien
-        if (response.equals("1")){
+        if (response.contains("1")){
             registroPosible = true;
         }
         else{

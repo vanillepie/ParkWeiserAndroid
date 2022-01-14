@@ -81,8 +81,7 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
     }
 
     public void confimarBorrado(String response) throws JSONException {
-        // TODO comprobar si se pasa bien
-        if (response.equals("1")){
+        if (response.contains("1")){
             borradoCorrecto = true;
         }
         else{

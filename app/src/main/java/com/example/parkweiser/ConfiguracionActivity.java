@@ -78,8 +78,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     public void setConductor(String response) throws JSONException {
-        // TODO comprobar si se pasa bien
-        if (response.equals("1")){
+        if (response.contains("1")){
             configuracionPosible = true;
         }
         else{

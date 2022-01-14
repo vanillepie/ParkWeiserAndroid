@@ -104,8 +104,7 @@ public class ReservarAdapter extends RecyclerView.Adapter <ReservarAdapter.ViewH
     }
 
     public void confirmaReserva(String response) throws JSONException {
-        // TODO comprobar si se pasa bien
-        if (response.equals("1")){
+        if (response.contains("1")){
             reservaPosible = true;
         }
         else{
