@@ -2,6 +2,7 @@ package com.example.parkweiser;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,18 @@ import java.util.List;
 
 public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioReservasAdapter.ViewHolder> {
 
+    private String tag = "CalendarioReservasAdapter";
     private List<Event> eventList;
     private Context context;
     private boolean borradoCorrecto = false;
     private String diaSeleccionado = "";
+    private CalendarioReservasActivity calendarioReservasActivity;
 
     public CalendarioReservasAdapter(List<Event> eventList, Context context, String diaSeleccionado){
         this.eventList = eventList;
         this.context = context;
         this.diaSeleccionado = diaSeleccionado;
+        this.calendarioReservasActivity = (CalendarioReservasActivity) context;
     }
 
     @NonNull
@@ -59,9 +63,14 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
                 @Override
                 public void onClick (View v){
                     borrarReserva(textDescripcionReserva.getText().toString().substring(34),
-                            diaSeleccionado.substring(0, 10) + "'T'" +
+                            diaSeleccionado.substring(0, 10) + " " +
                             textDescripcionReserva.getText().toString().substring(11, 16));
                     if(borradoCorrecto) {
+                        Log.i(tag, "Ir a Pagina Principal");
+                        Intent i = new Intent(calendarioReservasActivity, PaginaPrincipalActivity.class);
+                        i.putExtra(Ctes.CONDUCTOR_SESION, calendarioReservasActivity.getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
+                        calendarioReservasActivity.startActivity(i);
+                        calendarioReservasActivity.finish();
                         Toast.makeText(context, "Reserva eliminada correctamente.", Toast.LENGTH_LONG).show();
                     }
                     else{

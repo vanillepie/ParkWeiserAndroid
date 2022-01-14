@@ -95,8 +95,8 @@ public class ReservarAdapter extends RecyclerView.Adapter <ReservarAdapter.ViewH
     }
     private void getReserva(String matricula, String horaEntrada, String minutosEntrada, String horaSalida, String minutosSalida){
         diaReservaSesion = reservarActivity.getDiaReservaSesion();
-        String fechaEntrada = diaReservaSesion + "'T'" + horaEntrada + ":" + minutosEntrada;
-        String fechaSalida = diaReservaSesion + "'T'" + horaSalida + ":" + minutosSalida;
+        String fechaEntrada = diaReservaSesion + " " + horaEntrada + ":" + minutosEntrada;
+        String fechaSalida = diaReservaSesion + " " + horaSalida + ":" + minutosSalida;
 
         String url = Ctes.SERVIDOR + "ReservarEstacionamiento?matricula=" + matricula + "&entrada=" + fechaEntrada +"&salida=" + fechaSalida;
         ReservarThread thread = new ReservarThread(this, url);
