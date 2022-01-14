@@ -54,7 +54,6 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();*/
                 Toast.makeText(PaginaPrincipalActivity.this, "No disponible.", Toast.LENGTH_LONG).show();
-
             }
         });
         buttonTrafico.setOnClickListener( new View.OnClickListener() {

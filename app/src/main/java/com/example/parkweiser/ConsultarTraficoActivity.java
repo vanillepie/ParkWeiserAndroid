@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,11 +36,12 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
         buttonGraficas.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Ir a graficas");
+                // Log.i(tag, "Ir a graficas");
                 // TODO poner actividad graficas
-                Intent i = new Intent(ConsultarTraficoActivity.this, MapaCalorActivity.class);
+                /*Intent i = new Intent(ConsultarTraficoActivity.this, MapaCalorActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
+                Toast.makeText(ConsultarTraficoActivity.this, "No disponible.", Toast.LENGTH_LONG).show();
             }
         });
     }
