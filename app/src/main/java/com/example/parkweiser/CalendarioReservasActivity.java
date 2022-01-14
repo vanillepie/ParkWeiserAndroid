@@ -160,25 +160,30 @@ public class CalendarioReservasActivity extends AppCompatActivity {
         }
 
         String descripcion;
+        Date empieza = new Date();
         if(esReserva){
             descripcion = "Reserva de " + fechaEventoEmpieza.substring(11) + " hasta " + fechaEventoTermina.substring(11) + " para " + matricula;
+
+            try {
+                empieza = Ctes.FORMATO_FECHA.parse(fechaEventoEmpieza);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         else{
             descripcion = "Día concurrido";
+            try {
+                empieza = Ctes.FORMATO_DIA.parse(fechaEventoEmpieza);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         Calendar fechaEvento = Calendar.getInstance();
-        try {
-            fechaEvento.setTime(Ctes.FORMATO_FECHA.parse(fechaEventoEmpieza));
-            long fechaEnMilis = fechaEvento.getTimeInMillis();
-            Event evento = new Event (color, fechaEnMilis, descripcion);
-            calendario.addEvent(evento, false);
-        }
-
-        catch (ParseException e) {
-            e.printStackTrace();
-            Toast.makeText(CalendarioReservasActivity.this, "No se pudo añadir evento.", Toast.LENGTH_LONG).show();
-        }
+        fechaEvento.setTime(empieza);
+        long fechaEnMilis = fechaEvento.getTimeInMillis();
+        Event evento = new Event (color, fechaEnMilis, descripcion);
+        calendario.addEvent(evento, false);
     }
 
     @Override

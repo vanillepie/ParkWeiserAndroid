@@ -26,6 +26,7 @@ public class Ctes {
     public static final String FECHA_RESERVA_SESION = "FechaReserva";
 
     public static final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+    public static final SimpleDateFormat FORMATO_DIA = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     public static final SimpleDateFormat FORMATO_FECHA_SERVLET = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault());
     public static final SimpleDateFormat FORMATO_HORA = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
