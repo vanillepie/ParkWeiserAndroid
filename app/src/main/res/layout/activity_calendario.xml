@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app2="https://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEAE3"
+    android:backgroundTint="#ECEAE3"
+    android:foregroundTint="#ECEAE3"
+    tools:context=".MainActivity">
+
+    <!--CalendarView
+        android:id="@+id/calendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo" -->
+    <!--com.github.sundeepk.compactcalendarview.CompactCalendarView
+        android:id="@+id/calendario"
+        android:layout_width="413dp"
+        android:layout_height="529dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app2:compactCalendarBackgroundColor="#ECEAE3"
+        app2:compactCalendarCurrentDayBackgroundColor="#C7BFAC"
+        app2:compactCalendarMultiEventIndicatorColor="#fff"
+        app2:compactCalendarSelectedDayBackgroundColor="#C7BFAC"
+        app2:compactCalendarTextColor="#534B38"
+        app2:compactCalendarTextSize="5ap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo"
+        app:layout_constraintVertical_bias="1.0" /-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerReservas"
+        android:layout_width="411dp"
+        android:layout_height="142dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonReservar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonReservar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C7BFAC"
+        android:text="RESERVAR"
+        android:textColor="#534B38"
+        android:textColorLink="#534B38"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarioReservas"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <TextView
+        android:id="@+id/textTituloReservas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="18dp"
+        android:fontFamily="@font/gudea"
+        android:text="RESERVAS"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@+id/textMesReservas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textMesReservas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea"
+        android:text="Mes 2021"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.219" />
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        android:id="@+id/calendarioReservas"
+        android:layout_width="378dp"
+        android:layout_height="261dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="312dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarBackgroundColor="#ffECEAE3"
+        app:compactCalendarCurrentDayBackgroundColor="#C17529"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#C7BFAC"
+        app:compactCalendarMultiEventIndicatorColor="#fff"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextColor="#534B38"
+        app:compactCalendarTextSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMesReservas"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

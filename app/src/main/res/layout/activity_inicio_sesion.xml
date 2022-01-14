@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEAE3"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textTituloInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/gudea"
+        android:text="INICIO SESIÓN"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textInicioDNI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea"
+        android:text="DNI / NIE"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <Button
+        android:id="@+id/buttonInicioSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C7BFAC"
+        android:text="Iniciar Sesión"
+        android:textColor="#534B38"
+        android:textColorLink="#534B38"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <EditText
+        android:id="@+id/editTextInicioDNI"
+        android:layout_width="294dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="36dp"
+        android:backgroundTint="#C7BFAC"
+        android:ems="10"
+        android:fontFamily="@font/gudea"
+        android:inputType="textPersonName"
+        android:maxLength="9"
+        android:textColor="#534B38"
+        app:layout_constraintBottom_toTopOf="@+id/textInicioClave"
+        app:layout_constraintStart_toStartOf="@+id/textInicioClave" />
+
+    <EditText
+        android:id="@+id/editTextInicioClave"
+        android:layout_width="291dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#C7BFAC"
+        android:ems="10"
+        android:fontFamily="@font/gudea"
+        android:inputType="textPassword"
+        android:textColor="#534B38"
+        app:layout_constraintStart_toStartOf="@+id/textInicioClave"
+        app:layout_constraintTop_toBottomOf="@+id/textInicioClave" />
+
+    <TextView
+        android:id="@+id/textInicioClave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea"
+        android:text="Contraseña"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.439" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

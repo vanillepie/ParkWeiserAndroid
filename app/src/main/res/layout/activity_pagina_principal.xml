@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEAE3"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/buttonReservas"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="RESERVAS"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.316" />
+
+    <Button
+        android:id="@+id/buttonConfig"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="CONFIGURACIÓN"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.849" />
+
+    <Button
+        android:id="@+id/buttonTrafico"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="CONSULTAR TRÁFICO"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <Button
+        android:id="@+id/buttonDescuentos"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="DESCUENTOS"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <Button
+        android:id="@+id/buttonPagos"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="PAGOS Y RECIBOS"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <TextView
+        android:id="@+id/textTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea"
+        android:text="BIENVENIDA/O"
+        android:textAlignment="center"
+        android:textColor="#534B38"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <Button
+        android:id="@+id/buttonAutos"
+        android:layout_width="353dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#AC8872"
+        android:text="MIS AUTOMÓVILES"
+        android:textAlignment="textStart"
+        android:textColor="#ECEAE3"
+        android:textColorLink="#ECEAE3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.739" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
