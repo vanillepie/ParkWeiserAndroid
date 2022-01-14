@@ -49,6 +49,7 @@ public class RegistroCocheActivity extends AppCompatActivity {
 
                     if(registroPosible) {
                         Intent i = new Intent(RegistroCocheActivity.this, PaginaPrincipalActivity.class);
+                        i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                         startActivity(i);
                         finish();
                     }
