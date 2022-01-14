@@ -38,7 +38,7 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_coche, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserva, parent, false);
         return new ViewHolder(view);
     }
 
