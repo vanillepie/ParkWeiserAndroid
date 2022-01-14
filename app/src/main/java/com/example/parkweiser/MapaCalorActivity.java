@@ -103,7 +103,6 @@ public class MapaCalorActivity extends AppCompatActivity {
     }
 
     private void getOcupaciones(){
-        // TODO poner nombre servlet
         String url = Ctes.SERVIDOR + "GetOcupacionesPlazasPorDia";
         MapaCalorThread thread = new MapaCalorThread(this, url);
         try {
@@ -111,7 +110,7 @@ public class MapaCalorActivity extends AppCompatActivity {
         }catch (InterruptedException e){}
     }
 
-    public void setPlazas(String response) throws JSONException {
+    public void setOcupaciones(String response) throws JSONException {
         ocupaciones = Ctes.getOcupacionesJSON(response);
     }
 

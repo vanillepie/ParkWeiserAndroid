@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,10 +49,12 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonDescuentos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Ir a Descuentos");
+                /*Log.i(tag, "Ir a Descuentos");
                 Intent i = new Intent(PaginaPrincipalActivity.this, DescuentosActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
+                Toast.makeText(PaginaPrincipalActivity.this, "No disponible.", Toast.LENGTH_LONG).show();
+
             }
         });
         buttonTrafico.setOnClickListener( new View.OnClickListener() {

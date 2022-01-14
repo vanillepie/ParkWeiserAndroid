@@ -33,7 +33,7 @@ class MapaCalorThread extends Thread{
             response =  Ctes.convertStreamToString(in);
             Log.d(tag, "Respuesta JSON mapa calor: " + response);
 
-            activity.setPlazas(response);
+            activity.setOcupaciones(response);
         }
         catch (IOException | JSONException e) {
             e.printStackTrace();
