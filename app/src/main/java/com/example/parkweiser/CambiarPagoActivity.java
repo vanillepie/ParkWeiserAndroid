@@ -39,24 +39,19 @@ public class CambiarPagoActivity extends AppCompatActivity {
 
                 String tarjeta = editTextTarjeta.getText().toString();
 
-                if (Ctes.isTarjetaValida(tarjeta)){
-                    getConductor(tarjeta);
+                getConductor(tarjeta);
 
-                    if(cambioPosible) {
-                        Intent i = new Intent(CambiarPagoActivity.this, PagosActivity.class);
-                        i.putExtra(Ctes.CONDUCTOR_SESION, conductorSesion);
-                        Log.i(tag, "Conductor anaidido a sesion");
-                        startActivity(i);
-                        finish();
-                    }
-                    else{
-                        Toast.makeText(CambiarPagoActivity.this, "No se pudo realizar cambio.", Toast.LENGTH_LONG).show();
-                    }
+                if(cambioPosible) {
+                    Intent i = new Intent(CambiarPagoActivity.this, PagosActivity.class);
+                    i.putExtra(Ctes.CONDUCTOR_SESION, conductorSesion);
+                    Log.i(tag, "Conductor anaidido a sesion");
+                    startActivity(i);
+                    finish();
+                }
+                else{
+                    Toast.makeText(CambiarPagoActivity.this, "No se pudo realizar cambio.", Toast.LENGTH_LONG).show();
                 }
 
-                else {
-                    Toast.makeText(CambiarPagoActivity.this, "Ningún dato fue cambiado o la tarjeta no es correcta.", Toast.LENGTH_LONG).show();
-                }
             }
         });
     }
