@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class Ctes {
 
-    public static String SERVIDOR = "http://192.168.1.131:8080/UbicompServerExample/";
+    public static String SERVIDOR = "http://192.168.0.26:8080/ParkWeiserServer/";
 
     public static final String LETRAS_DNI="TRWAGMYFPDXBNJZSQVHLCKE";
 

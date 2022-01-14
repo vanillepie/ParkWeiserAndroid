@@ -32,7 +32,6 @@ class RegistroThread extends Thread{
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             response =  Ctes.convertStreamToString(in);
             Log.d(tag, "Respuesta JSON registro: " + response);
-
             activity.setConductor(response);
         }
         catch (IOException | JSONException e) {
