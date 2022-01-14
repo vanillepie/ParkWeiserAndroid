@@ -142,4 +142,12 @@ public class ConfiguracionActivity extends AppCompatActivity {
         editTextConfigNombre.setText(nombreSesion);
         editTextConfigTelefono.setText(telefonoSesion);
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagina Principal");
+        Intent i = new Intent(ConfiguracionActivity.this, PaginaPrincipalActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

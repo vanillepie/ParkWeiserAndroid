@@ -159,4 +159,12 @@ public class CalendarioReservasActivity extends AppCompatActivity {
             Toast.makeText(CalendarioReservasActivity.this, "No se pudo añadir evento.", Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagina Principal");
+        Intent i = new Intent(CalendarioReservasActivity.this, PaginaPrincipalActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

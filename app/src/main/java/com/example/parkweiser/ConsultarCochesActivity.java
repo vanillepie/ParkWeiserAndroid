@@ -80,4 +80,12 @@ public class ConsultarCochesActivity extends AppCompatActivity {
     public void setCoches(String response) throws JSONException {
         // TODO sacar lista de coches y settear
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagina Principal");
+        Intent i = new Intent(ConsultarCochesActivity.this, PaginaPrincipalActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

@@ -30,7 +30,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonReservas.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
+                Log.i(tag, "Ir a Calendario Reservas");
                 Intent i = new Intent(PaginaPrincipalActivity.this, CalendarioReservasActivity.class);
                 startActivity(i);
                 finish();
@@ -39,8 +39,8 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonPagos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
-                Intent i = new Intent(PaginaPrincipalActivity.this, ReservarActivity.class);
+                Log.i(tag, "Ir a Pagos");
+                Intent i = new Intent(PaginaPrincipalActivity.this, PagosActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -48,7 +48,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonDescuentos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
+                Log.i(tag, "Ir a Descuentos");
                 Intent i = new Intent(PaginaPrincipalActivity.this, DescuentosActivity.class);
                 startActivity(i);
                 finish();
@@ -57,7 +57,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonTrafico.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
+                Log.i(tag, "Ir a Consultar Trafico");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConsultarTraficoActivity.class);
                 startActivity(i);
                 finish();
@@ -66,7 +66,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonAutos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
+                Log.i(tag, "Ir a Consultar Coches");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConsultarCochesActivity.class);
                 startActivity(i);
                 finish();
@@ -75,7 +75,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         buttonConfig.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "Button pressed");
+                Log.i(tag, "Ir a Configuracion");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConfiguracionActivity.class);
                 startActivity(i);
                 finish();

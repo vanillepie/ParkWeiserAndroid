@@ -128,4 +128,12 @@ public class RegistroActivity extends AppCompatActivity {
         this.editTextRegistroNombre = this.findViewById(R.id.editTextRegistroNombre);
         this.editTextRegistroTelefono = this.findViewById(R.id.editTextRegistroTelefono);
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Main");
+        Intent i = new Intent(RegistroActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

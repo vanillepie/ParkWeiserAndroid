@@ -133,4 +133,12 @@ public class RegistroCocheActivity extends AppCompatActivity {
         this.radioButtonElectricoRegistroCoche = this.findViewById(R.id.radioButtonElectricoRegistroCoche);
         this.radioButtonMinusvalidosRegistroCoche = this.findViewById(R.id.radioButtonMinusvalidosRegistroCoche);
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Consultar Coches");
+        Intent i = new Intent(RegistroCocheActivity.this, ConsultarCochesActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

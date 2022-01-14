@@ -37,7 +37,7 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a graficas");
                 // TODO poner actividad graficas
-                Intent i = new Intent(ConsultarTraficoActivity.this, ReservarActivity.class);
+                Intent i = new Intent(ConsultarTraficoActivity.this, MapaCalorActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -52,5 +52,13 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
     private void initElementos(){
         this.buttonMapaCalor = this.findViewById(R.id.buttonMapaCalor);
         this.buttonGraficas = this.findViewById(R.id.buttonGraficas);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagina Principal");
+        Intent i = new Intent(ConsultarTraficoActivity.this, PaginaPrincipalActivity.class);
+        startActivity(i);
+        finish();
     }
 }

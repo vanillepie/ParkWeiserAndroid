@@ -1,5 +1,6 @@
 package com.example.parkweiser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,6 +30,15 @@ public class DescuentosActivity extends AppCompatActivity {
 
         hideActionBar();
         initElementos();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagina Principal");
+        Intent i = new Intent(DescuentosActivity.this, PaginaPrincipalActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void getDescuentos(){

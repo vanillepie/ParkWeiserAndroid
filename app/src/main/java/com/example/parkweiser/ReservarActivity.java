@@ -157,4 +157,12 @@ public class ReservarActivity extends AppCompatActivity {
         diaReservaSesion = getIntent().getStringExtra(Ctes.FECHA_RESERVA_SESION).substring(0, 10);
         textDiaReserva.setText(diaReservaSesion);
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Calendario Reservas");
+        Intent i = new Intent(ReservarActivity.this, CalendarioReservasActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

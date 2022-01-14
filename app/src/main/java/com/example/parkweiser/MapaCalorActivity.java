@@ -1,8 +1,10 @@
 package com.example.parkweiser;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -130,6 +132,14 @@ public class MapaCalorActivity extends AppCompatActivity {
         calendario.setUseThreeLetterAbbreviation(true);
 
         pintarMapaCalor(formatoFecha.format(ahora));
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Consultar Trafico");
+        Intent i = new Intent(MapaCalorActivity.this, ConsultarTraficoActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void initMapa(){

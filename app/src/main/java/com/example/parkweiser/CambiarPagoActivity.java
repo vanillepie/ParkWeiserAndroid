@@ -126,4 +126,11 @@ public class CambiarPagoActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Pagos");
+        Intent i = new Intent(CambiarPagoActivity.this, PagosActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

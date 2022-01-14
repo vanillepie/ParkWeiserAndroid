@@ -123,4 +123,12 @@ public class InicioSesionActivity extends AppCompatActivity {
         this.editTextDNI = this.findViewById(R.id.editTextInicioDNI);
         this.editTextClave = this.findViewById(R.id.editTextInicioClave);
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(tag, "Ir a Main");
+        Intent i = new Intent(InicioSesionActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }
