@@ -30,59 +30,6 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
         this.consultarCochesActivity = (ConsultarCochesActivity) context;
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_coche, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textMatricula.setText(cocheList.get(position).getMatricula());
-        holder.textElectrico.setText(setTextElectrico(cocheList.get(position).getEsElectrico()));
-        holder.textMinusvalidos.setText(setTextMinusvalidos(cocheList.get(position).getEsMinusvalidos()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return cocheList.size();
-    }
-
-
-    //TODO ver si se puede hacer non static
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textMatricula;
-        private TextView textElectrico;
-        private TextView textMinusvalidos;
-
-        public ViewHolder(@NonNull View itemView){
-            super(itemView);
-            textMatricula = itemView.findViewById(R.id.textMatriculaCoche);
-            textElectrico = itemView.findViewById(R.id.textElectricoCoche);
-            textMinusvalidos = itemView.findViewById(R.id.textMinusvalidosCoche);
-
-            itemView.findViewById(R.id.buttonEliminarCoche).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick (View v){
-                    borrarCoche((String) textMatricula.getText());
-                    if(borradoCorrecto) {
-                        Log.i(tag, "Ir a registrar coche");
-                        Intent i = new Intent(consultarCochesActivity, RegistroCocheActivity.class);
-                        i.putExtra(Ctes.CONDUCTOR_SESION, consultarCochesActivity.getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
-                        consultarCochesActivity.startActivity(i);
-                        consultarCochesActivity.finish();
-
-                        Toast.makeText(context, "Coche eliminada correctamente.", Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        Toast.makeText(context, "No se pudo eliminar reserva.", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
-    }
-
     private void borrarCoche(String matricula){
         String url = Ctes.SERVIDOR + "EliminarVehiculo?matricula=" + matricula;
         BorrarCocheThread thread = new BorrarCocheThread(this, url);
@@ -123,4 +70,59 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
 
         return textMinusvalidos;
     }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_coche, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.textMatricula.setText(cocheList.get(position).getMatricula());
+        holder.textElectrico.setText(setTextElectrico(cocheList.get(position).getEsElectrico()));
+        holder.textMinusvalidos.setText(setTextMinusvalidos(cocheList.get(position).getEsMinusvalidos()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return cocheList.size();
+    }
+
+
+    //TODO ver si se puede hacer non static
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView textMatricula;
+        private TextView textElectrico;
+        private TextView textMinusvalidos;
+
+        public ViewHolder(@NonNull View itemView){
+            super(itemView);
+            textMatricula = itemView.findViewById(R.id.textMatriculaCoche);
+            textElectrico = itemView.findViewById(R.id.textElectricoCoche);
+            textMinusvalidos = itemView.findViewById(R.id.textMinusvalidosCoche);
+
+            itemView.findViewById(R.id.buttonEliminarCoche).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v){
+                    borrarCoche((String) textMatricula.getText());
+                    if(borradoCorrecto) {
+                        Log.i(tag, "Ir a registrar coche");
+                        Intent i = new Intent(consultarCochesActivity, ConsultarCochesActivity.class);
+                        i.putExtra(Ctes.CONDUCTOR_SESION, consultarCochesActivity.getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
+                        consultarCochesActivity.startActivity(i);
+                        consultarCochesActivity.finish();
+
+                        Toast.makeText(context, "Coche eliminada correctamente.", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(context, "No se pudo eliminar reserva.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+    }
+
+
 }

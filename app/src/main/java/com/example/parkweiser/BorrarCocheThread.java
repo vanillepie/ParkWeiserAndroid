@@ -17,7 +17,7 @@ class BorrarCocheThread extends Thread{
     private String urlStr = "";
 
     public BorrarCocheThread(ConsultarCochesAdapter adapter, String url) {
-        adapter = adapter;
+        this.adapter = adapter;
         urlStr = url;
         start();
     }

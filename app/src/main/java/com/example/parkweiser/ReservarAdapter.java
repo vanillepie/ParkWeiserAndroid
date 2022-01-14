@@ -76,7 +76,9 @@ public class ReservarAdapter extends RecyclerView.Adapter <ReservarAdapter.ViewH
                         getReserva(textMatriculaCocheReserva.getText().toString(), horaEntrada, minutosEntrada, horaSalida, minutosSalida);
 
                         if(reservaPosible) {
+                            Log.i(tag, "Ir a Calendario Reservas");
                             Intent i = new Intent(reservarActivity, CalendarioReservasActivity.class);
+                            i.putExtra(Ctes.CONDUCTOR_SESION, reservarActivity.getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                             reservarActivity.startActivity(i);
                             reservarActivity.finish();
                         }

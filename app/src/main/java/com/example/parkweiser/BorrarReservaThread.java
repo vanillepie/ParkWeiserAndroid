@@ -17,7 +17,7 @@ class BorrarReservaThread extends Thread{
     private String urlStr = "";
 
     public BorrarReservaThread(CalendarioReservasAdapter adapter, String url) {
-        adapter = adapter;
+        this.adapter = adapter;
         urlStr = url;
         start();
     }
