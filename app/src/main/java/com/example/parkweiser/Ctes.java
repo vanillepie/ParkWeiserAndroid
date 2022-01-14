@@ -109,8 +109,8 @@ public class Ctes {
         JSONArray diasConcurridosJSON = new JSONArray(diasConcurridosResponse);
 
         for (int i = 0; i < diasConcurridosJSON.length(); i++){
-            JSONObject diaConcurridoJSON = diasConcurridosJSON.getJSONObject(i);
-            diasConcurridos.add(diaConcurridoJSON.toString());
+            String diaConcurridoJSON = diasConcurridosJSON.getString(i);
+            diasConcurridos.add(diaConcurridoJSON);
         }
         return diasConcurridos;
     }
