@@ -1,6 +1,8 @@
 package com.example.parkweiser;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +18,16 @@ import java.util.List;
 
 public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCochesAdapter.ViewHolder> {
 
+    private String tag = "ConsultarCochesAdapter";
     private List<Coche> cocheList;
     private Context context;
     private Boolean borradoCorrecto = false;
+    private ConsultarCochesActivity consultarCochesActivity;
 
     public ConsultarCochesAdapter(List<Coche> cocheList, Context context){
         this.cocheList = cocheList;
         this.context = context;
+        this.consultarCochesActivity = (ConsultarCochesActivity) context;
     }
 
     @NonNull
@@ -62,7 +67,13 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
                 public void onClick (View v){
                     borrarCoche((String) textMatricula.getText());
                     if(borradoCorrecto) {
-                        Toast.makeText(context, "Reserva eliminada correctamente.", Toast.LENGTH_LONG).show();
+                        Log.i(tag, "Ir a registrar coche");
+                        Intent i = new Intent(consultarCochesActivity, RegistroCocheActivity.class);
+                        i.putExtra(Ctes.CONDUCTOR_SESION, consultarCochesActivity.getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
+                        consultarCochesActivity.startActivity(i);
+                        consultarCochesActivity.finish();
+
+                        Toast.makeText(context, "Coche eliminada correctamente.", Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(context, "No se pudo eliminar reserva.", Toast.LENGTH_LONG).show();
