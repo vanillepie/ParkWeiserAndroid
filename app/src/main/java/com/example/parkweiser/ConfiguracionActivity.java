@@ -78,7 +78,11 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     public void setConductor(String response) throws JSONException {
-        if (response.contains("1")){
+        conductorSesion = response;
+        JSONObject conductorJSON = new JSONObject(response);
+        String dni = conductorJSON.getString("DNI");
+
+        if (!dni.equals("-1")){
             configuracionPosible = true;
         }
         else{

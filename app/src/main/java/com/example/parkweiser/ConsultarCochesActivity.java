@@ -40,6 +40,7 @@ public class ConsultarCochesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a registrar coche");
                 Intent i = new Intent(ConsultarCochesActivity.this, RegistroCocheActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
