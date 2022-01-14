@@ -33,6 +33,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a Calendario Reservas");
                 Intent i = new Intent(PaginaPrincipalActivity.this, CalendarioReservasActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
@@ -42,6 +43,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a Pagos");
                 Intent i = new Intent(PaginaPrincipalActivity.this, PagosActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
@@ -51,6 +53,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /*Log.i(tag, "Ir a Descuentos");
                 Intent i = new Intent(PaginaPrincipalActivity.this, DescuentosActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();*/
                 Toast.makeText(PaginaPrincipalActivity.this, "No disponible.", Toast.LENGTH_LONG).show();
@@ -61,6 +64,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a Consultar Trafico");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConsultarTraficoActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
@@ -70,6 +74,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a Consultar Coches");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConsultarCochesActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
@@ -79,6 +84,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a Configuracion");
                 Intent i = new Intent(PaginaPrincipalActivity.this, ConfiguracionActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }

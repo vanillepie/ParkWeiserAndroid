@@ -29,6 +29,7 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a mapa de calor");
                 Intent i = new Intent(ConsultarTraficoActivity.this, MapaCalorActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
@@ -39,6 +40,7 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
                 // Log.i(tag, "Ir a graficas");
                 // TODO poner actividad graficas
                 /*Intent i = new Intent(ConsultarTraficoActivity.this, MapaCalorActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();*/
                 Toast.makeText(ConsultarTraficoActivity.this, "No disponible.", Toast.LENGTH_LONG).show();

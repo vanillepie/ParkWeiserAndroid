@@ -39,6 +39,7 @@ public class PagosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Ir a cambiar metodo de pago");
                 Intent i = new Intent(PagosActivity.this, CambiarPagoActivity.class);
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
