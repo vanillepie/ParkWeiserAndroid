@@ -16,15 +16,19 @@
         android:theme="@style/Theme.ParkWeiser"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".InicioSesionActivity"/>
-        <activity android:name=".PaginaPrincipalActivity"/>
-        <activity android:name=".DescuentosActivity"/>
-        <activity android:name=".RegistroCocheActivity"/>
-        <activity android:name=".RegistroActivity"/>
-        <activity android:name=".ReservarActivity"/>
-        <activity android:name=".ConsultarCochesActivity"/>
         <activity android:name=".CalendarioReservasActivity"/>
+        <activity android:name=".CambiarPagoActivity"/>
+        <activity android:name=".ConfiguracionActivity"/>
+        <activity android:name=".ConsultarCochesActivity"/>
+        <activity android:name=".ConsultarTraficoActivity"/>
+        <activity android:name=".DescuentosActivity"/>
+        <activity android:name=".InicioSesionActivity"/>
         <activity android:name=".MapaCalorActivity"/>
+        <activity android:name=".PaginaPrincipalActivity"/>
+        <activity android:name=".PagosActivity"/>
+        <activity android:name=".RegistroActivity"/>
+        <activity android:name=".RegistroCocheActivity"/>
+        <activity android:name=".ReservarActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
