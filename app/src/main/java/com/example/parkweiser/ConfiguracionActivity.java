@@ -44,8 +44,8 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 Log.i(tag, "Intento de configuracion");
 
                 String clave = editTextConfigClave.getText().toString();
-                String telefono = editTextConfigNombre.getText().toString();
-                String nombre = editTextConfigTelefono.getText().toString();
+                String telefono = editTextConfigTelefono.getText().toString();
+                String nombre = editTextConfigNombre.getText().toString();
 
                 if (haCambiadoClave(clave) || haCambiadoNombre(nombre) || haCambiadoTel(telefono)){
                     getConductor(clave, telefono, nombre);
