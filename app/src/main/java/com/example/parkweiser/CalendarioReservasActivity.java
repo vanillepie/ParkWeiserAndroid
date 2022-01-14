@@ -116,8 +116,6 @@ public class CalendarioReservasActivity extends AppCompatActivity {
     }
 
     private void initElementos(){
-        getDiasConcurridos();
-
         recyclerReservas = findViewById(R.id.recyclerReservas);
         recyclerReservas.setLayoutManager(new LinearLayoutManager(this));
 
@@ -135,6 +133,7 @@ public class CalendarioReservasActivity extends AppCompatActivity {
             Log.i(tag, "Error al sacar conductor de sesion: " + e);
             Toast.makeText(CalendarioReservasActivity.this, "Ocurrió un problema.", Toast.LENGTH_LONG).show();
         }
+        getDiasConcurridos();
         getReservas();
     }
 
