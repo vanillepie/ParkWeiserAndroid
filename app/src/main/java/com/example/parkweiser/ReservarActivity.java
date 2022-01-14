@@ -29,7 +29,6 @@ public class ReservarActivity extends AppCompatActivity {
     private String dniSesion = "";
     private TextView textDiaReserva;
     private String diaReservaSesion = "";
-    private Button buttonAniadirReserva;
     private EditText editTextHoraEntrada;
     private EditText editTextMinutosEntrada;
     private EditText editTextHoraSalida;
@@ -83,7 +82,6 @@ public class ReservarActivity extends AppCompatActivity {
         this.editTextMinutosEntrada = this.findViewById(R.id.editTextMinutosEntrada);
         this.editTextHoraSalida = this.findViewById(R.id.editTextHoraSalida);
         this.editTextMinutosSalida = this.findViewById(R.id.editTextMinutosSalida);
-        this.buttonAniadirReserva = this.findViewById(R.id.buttonAniadirReserva);
 
         diaReservaSesion = getIntent().getStringExtra(Ctes.FECHA_RESERVA_SESION).substring(0, 10);
         textDiaReserva.setText(diaReservaSesion);

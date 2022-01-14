@@ -74,6 +74,7 @@ public class CalendarioReservasActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(CalendarioReservasActivity.this, ReservarActivity.class);
                 i.putExtra(Ctes.FECHA_RESERVA_SESION, Ctes.FORMATO_FECHA.format(fechaSeleccionada));
+                i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
                 startActivity(i);
                 finish();
             }
