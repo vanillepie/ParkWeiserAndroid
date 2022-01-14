@@ -63,7 +63,7 @@ public class InicioSesionActivity extends AppCompatActivity {
     }
 
     private void getConductor(String dni, String clave){
-        String url = Ctes.SERVIDOR + "InicioSesion?DNI=" + dni + "&clave=" + clave;
+        String url = Ctes.SERVIDOR + "IniciarSesion?DNI=" + dni + "&clave=" + clave;
         InicioSesionThread thread = new InicioSesionThread(this, url);
         try {
             thread.join();
