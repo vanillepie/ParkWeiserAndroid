@@ -35,8 +35,8 @@ public class PagosAdapter extends RecyclerView.Adapter <PagosAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textMatriculaPago.setText(AparcaEnList.get(position).getMatricula());
         holder.textPrecioPago.setText(setTextPrecio(AparcaEnList.get(position).getPrecio()));
-        holder.textEntradaPago.setText(setTextFecha(AparcaEnList.get(position).getEntrada()));
-        holder.textSalidaPago.setText(setTextFecha(AparcaEnList.get(position).getSalida()));
+        holder.textEntradaPago.setText(AparcaEnList.get(position).getEntrada());
+        holder.textSalidaPago.setText(AparcaEnList.get(position).getSalida());
     }
 
     @Override
@@ -57,11 +57,6 @@ public class PagosAdapter extends RecyclerView.Adapter <PagosAdapter.ViewHolder>
             textEntradaPago = itemView.findViewById(R.id.textEntradaPago);
             textSalidaPago = itemView.findViewById(R.id.textSalidaPago);
         }
-    }
-
-    private String setTextFecha(Timestamp fecha){
-        String textFecha = formatoFecha.format(fecha);
-        return textFecha;
     }
 
     private String setTextPrecio(float precio){
