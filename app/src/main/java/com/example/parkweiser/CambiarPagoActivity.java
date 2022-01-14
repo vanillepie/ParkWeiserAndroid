@@ -42,7 +42,7 @@ public class CambiarPagoActivity extends AppCompatActivity {
                 getConductor(tarjeta);
 
                 if(cambioPosible) {
-                    Intent i = new Intent(CambiarPagoActivity.this, PagosActivity.class);
+                    Intent i = new Intent(CambiarPagoActivity.this, PaginaPrincipalActivity.class);
                     i.putExtra(Ctes.CONDUCTOR_SESION, conductorSesion);
                     Log.i(tag, "Conductor anaidido a sesion");
                     startActivity(i);

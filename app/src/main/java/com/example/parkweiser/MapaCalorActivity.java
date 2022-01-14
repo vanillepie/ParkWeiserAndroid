@@ -121,7 +121,6 @@ public class MapaCalorActivity extends AppCompatActivity {
 
     private void initElementos() {
         getOcupaciones();
-
         initMapa();
         textMes = findViewById(R.id.textMesMapa);
         ahora = new Date();
