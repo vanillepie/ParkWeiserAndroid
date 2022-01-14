@@ -18,7 +18,7 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
 
     private List<Coche> cocheList;
     private Context context;
-    private static boolean borradoCorrecto = false;
+    private Boolean borradoCorrecto = false;
 
     public ConsultarCochesAdapter(List<Coche> cocheList, Context context){
         this.cocheList = cocheList;
@@ -44,7 +44,9 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
         return cocheList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+    //TODO ver si se puede hacer non static
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textMatricula;
         private TextView textElectrico;
         private TextView textMinusvalidos;
@@ -54,26 +56,24 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
             textMatricula = itemView.findViewById(R.id.textMatriculaCoche);
             textElectrico = itemView.findViewById(R.id.textElectricoCoche);
             textMinusvalidos = itemView.findViewById(R.id.textMinusvalidosCoche);
+
             itemView.findViewById(R.id.buttonEliminarCoche).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v){
-                    //borrarCoche((String) textMatricula.getText());
+                    borrarCoche((String) textMatricula.getText());
                     if(borradoCorrecto) {
-                        //TODO ver si se puede hacer not static
-                        //Toast.makeText(context, "Reserva eliminada correctamente.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Reserva eliminada correctamente.", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        //Toast.makeText(context, "No se pudo eliminar reserva.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "No se pudo eliminar reserva.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
         }
     }
 
-
     private void borrarCoche(String matricula){
-        // TODO poner servlet y pasar matricula
-        String url = Ctes.SERVIDOR + "InicioSesion?DNI=";
+        String url = Ctes.SERVIDOR + "EliminarVehiculo?matricula=" + matricula;
         BorrarCocheThread thread = new BorrarCocheThread(this, url);
         try {
             thread.join();
@@ -81,7 +81,13 @@ public class ConsultarCochesAdapter extends RecyclerView.Adapter <ConsultarCoche
     }
 
     public void confimarBorrado(String response) throws JSONException {
-        // TODO confirmar que se ha borrado bien
+        // TODO comprobar si se pasa bien
+        if (response.equals("1")){
+            borradoCorrecto = true;
+        }
+        else{
+            borradoCorrecto = false;
+        }
     }
 
     private String setTextElectrico(Boolean esElectrico){

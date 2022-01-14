@@ -5,9 +5,10 @@ public class Conductor {
     private String clave;
     private String nombre;
     private int telefono;
+    private String tarjeta;
 
     // constructors
-    public Conductor(String DNI, String clave, String nombre, int telefono)
+    public Conductor(String DNI, String clave, String nombre, int telefono, String tarjeta)
     {
         this.DNI = DNI;
         this.clave = clave;
@@ -57,5 +58,13 @@ public class Conductor {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }

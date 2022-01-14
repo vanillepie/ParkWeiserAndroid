@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Plaza {
     private int id;
-    private int parking;
-    private ArrayList<OcupacionFecha> valores = new ArrayList<>();
+    private ArrayList<OcupacionFecha> valores;
 
 
-    public Plaza(int id, int parking) {
+    public Plaza(int id, ArrayList<OcupacionFecha> valores) {
         this.id = id;
-        this.parking = parking;
+        this.valores = valores;
     }
 
     public int getId() {
@@ -18,12 +17,6 @@ public class Plaza {
     }
     public void setId(int id) {
         this.id = id;
-    }
-    public int getParking() {
-        return parking;
-    }
-    public void setParking(int parking) {
-        this.parking = parking;
     }
     public ArrayList<OcupacionFecha> getValores() {
         return valores;

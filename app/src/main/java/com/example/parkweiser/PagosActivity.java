@@ -68,8 +68,7 @@ public class PagosActivity extends AppCompatActivity {
     }
 
     private void getPagos(){
-        // TODO poner nombre servlet
-        String url = Ctes.SERVIDOR + "?DNI=" + dniSesion;
+        String url = Ctes.SERVIDOR + "GetMisRecibos?DNI=" + dniSesion;
         PagosThread thread = new PagosThread(this, url);
         try {
             thread.join();
@@ -77,7 +76,7 @@ public class PagosActivity extends AppCompatActivity {
     }
 
     public void setPagos(String response) throws JSONException {
-        // TODO sacar lista de pagos
+        pagos = Ctes.getPagosJSON(response);
     }
 
     @Override

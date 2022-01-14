@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,11 +20,13 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ReservarActivity extends AppCompatActivity {
 
     private String tag = "ReservarActivity";
+    private String dniSesion = "";
     private TextView textDiaReserva;
     private String diaReservaSesion = "";
     private Button buttonAniadirReserva;
@@ -30,12 +34,8 @@ public class ReservarActivity extends AppCompatActivity {
     private EditText editTextMinutosEntrada;
     private EditText editTextHoraSalida;
     private EditText editTextMinutosSalida;
-    private String horaEntrada;
-    private String minutosEntrada;
-    private String horaSalida;
-    private String minutosSalida;
-    private Boolean reservaPosible;
-
+    private RecyclerView recyclerCochesReserva;
+    private List<Coche> coches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,101 +44,18 @@ public class ReservarActivity extends AppCompatActivity {
 
         hideActionBar();
         initElementos();
-
-        buttonAniadirReserva.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(tag, "Intento de iniciar sesion");
-
-                String horaEntrada = editTextHoraEntrada.getText().toString();
-                String minutosEntrada = editTextMinutosEntrada.getText().toString();
-                String horaSalida = editTextHoraSalida.getText().toString();
-                String minutosSalida = editTextMinutosSalida.getText().toString();
-
-                if (esFechaValida(horaEntrada, minutosEntrada, horaSalida, minutosSalida)){
-
-                    getReserva(horaEntrada, minutosEntrada, horaSalida, minutosSalida);
-
-                    if(reservaPosible) {
-                        Intent i = new Intent(ReservarActivity.this, CalendarioReservasActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                    else{
-                        Toast.makeText(ReservarActivity.this, "No se puedo realizar la reserva.", Toast.LENGTH_LONG).show();
-                    }
-                }
-                else {
-                    Toast.makeText(ReservarActivity.this, "Fecha no correcta.", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
     }
 
-    private void getReserva(String horaEntrada, String minutosEntrada, String horaSalida, String minutosSalida){
-        // TODO poner servlet y fecha
-
-        String fechaEntrada = diaReservaSesion + horaEntrada + ":" + minutosEntrada;
-        String fechaSalida = diaReservaSesion + horaSalida + ":" + minutosSalida;
-
-        String url = Ctes.SERVIDOR + "servlet?entrada=&salida";
-        ReservarThread thread = new ReservarThread(this, url);
+    private void getCoches(){
+        String url = Ctes.SERVIDOR + "GetMisVehiculos?DNI="+ dniSesion;
+        ConsultarCochesReservaThread thread = new ConsultarCochesReservaThread(this, url);
         try {
             thread.join();
         }catch (InterruptedException e){}
     }
 
-    public void confirmaReserva(String response) throws JSONException {
-        // TODO decir si fue bien
-    }
-
-    private Boolean esFechaValida(String horaEntrada, String minutosEntrada, String horaSalida, String minutosSalida){
-        boolean valido = false;
-
-        if (esHorasValido(horaEntrada) && esHorasValido(horaSalida) && esMinutosValido(minutosEntrada) && esMinutosValido(minutosSalida)){
-            try {
-                Date entrada = Ctes.FORMATO_HORA.parse(horaEntrada + ":" + minutosEntrada);
-                Date salida = Ctes.FORMATO_HORA.parse(horaSalida + ":" + minutosSalida);
-
-                if(entrada.before(salida)){
-                    valido = true;
-                }
-
-            } catch (ParseException e) {
-                valido = false;
-            }
-        }
-
-        return valido;
-    }
-
-    private Boolean esMinutosValido(String tiempoStr){
-        boolean valido = true;
-        int tiempo;
-        try{
-            tiempo = Integer.parseInt(tiempoStr);
-            if (0 > tiempo || tiempo >= 60){
-                valido = false;
-            }
-        }
-        catch(Exception e){
-            valido = false;
-        }
-        return valido;
-    }
-    private Boolean esHorasValido(String tiempoStr){
-        boolean valido = true;
-        int tiempo;
-        try{
-            tiempo = Integer.parseInt(tiempoStr);
-            if (0 > tiempo || tiempo >= 23){
-                valido = false;
-            }
-        }
-        catch(Exception e){
-            valido = false;
-        }
-        return valido;
+    public void setCoches(String response) throws JSONException {
+        coches = Ctes.getCochesJSON(response);
     }
 
     private void hideActionBar(){
@@ -147,6 +64,20 @@ public class ReservarActivity extends AppCompatActivity {
     }
 
     private void initElementos(){
+        try {
+            Conductor conductor = Ctes.getConductorJSON(getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
+            dniSesion = conductor.getDNI();
+        } catch (JSONException e) {
+            Log.i(tag, "Error al sacar conductor de sesion: " + e);
+            Toast.makeText(ReservarActivity.this, "Ocurrió un problema.", Toast.LENGTH_LONG).show();
+        }
+
+        getCoches();
+        recyclerCochesReserva = findViewById(R.id.recyclerCochesReserva);
+        recyclerCochesReserva.setLayoutManager(new LinearLayoutManager(this));
+        ReservarAdapter reservarAdapter = new ReservarAdapter(coches, this);
+        recyclerCochesReserva.setAdapter(reservarAdapter);
+
         this.textDiaReserva = this.findViewById(R.id.textDiaReserva);
         this.editTextHoraEntrada = this.findViewById(R.id.editTextHoraEntrada);
         this.editTextMinutosEntrada = this.findViewById(R.id.editTextMinutosEntrada);
@@ -156,6 +87,23 @@ public class ReservarActivity extends AppCompatActivity {
 
         diaReservaSesion = getIntent().getStringExtra(Ctes.FECHA_RESERVA_SESION).substring(0, 10);
         textDiaReserva.setText(diaReservaSesion);
+    }
+
+    public String getHoraEntrada(){
+       return editTextHoraEntrada.getText().toString();
+    }
+    public String getMinutosEntrada(){
+        return editTextMinutosEntrada.getText().toString();
+    }
+    public String getHoraSalida(){
+        return editTextHoraSalida.getText().toString();
+    }
+    public String getMinutosSalida(){
+        return editTextMinutosSalida.getText().toString();
+    }
+
+    public String getDiaReservaSesion() {
+        return diaReservaSesion;
     }
 
     @Override

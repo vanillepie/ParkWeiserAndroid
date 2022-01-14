@@ -20,6 +20,7 @@ import java.util.Locale;
 public class RegistroCocheActivity extends AppCompatActivity {
 
     private String tag = "RegistroCocheActivity";
+    private String dniSesion = "";
     private Button buttonRegistroCoche;
     private TextView editTextMatriculaRegistroCoche;
     private RadioButton radioButtonElectricoRegistroCoche;
@@ -43,7 +44,7 @@ public class RegistroCocheActivity extends AppCompatActivity {
                 Boolean electrico = radioButtonElectricoRegistroCoche.isChecked();
                 Boolean minusvalidos = radioButtonMinusvalidosRegistroCoche.isChecked();
 
-                if (esMatriculaValida(matricula)){
+                if (Ctes.esMatriculaValida(matricula)){
                     getCoche(matricula, electrico, minusvalidos);
 
                     if(registroPosible) {
@@ -64,63 +65,31 @@ public class RegistroCocheActivity extends AppCompatActivity {
     }
 
     private void getCoche(String matricula, Boolean electrico, Boolean minusvalidos){
-        // TODO pasar datos y nombre servlet
-        String url = Ctes.SERVIDOR + "InicioSesion?DNI=";
+        int tipo = 1;
+        if(electrico){
+            tipo = 2;
+        }
+        else if (minusvalidos){
+            tipo = 3;
+        }
+
+        String url = Ctes.SERVIDOR + "RegistrarVehiculo?matricula=" + matricula + "&DNI=" + dniSesion + "&tipo=" + tipo;
         RegistroCocheThread thread = new RegistroCocheThread(this, url);
         try {
             thread.join();
         }catch (InterruptedException e){}
     }
     public void confirmaRegistro(String response) throws JSONException {
-        // TODO confirmar
-    }
-
-    private Boolean esMatriculaValida(String matricula){
-        Boolean valido = true;
-
-        String letras1 = matricula.trim().replaceAll(" ", "").substring(0, 2);
-        String numeros = matricula.trim().replaceAll(" ", "").substring(2, 5);
-        String letras2 = matricula.trim().replaceAll(" ", "").substring(5);
-
-        if (esLetrasValido(letras1) == false && esLetrasValido(letras2) == false && esNumMatricula(numeros) == false ) {
-            valido = false;
-        }
-        return valido;
-    }
-
-    private Boolean esLetrasValido(String letras){
-        Boolean valido = true;
-        letras = letras.toUpperCase();
-        char[] charArray = letras.toCharArray();
-        if (charArray.length == 2){
-            for (int i = 0; i < charArray.length; i++) {
-                char ch = charArray[i];
-                if (!(ch >= 'A' && ch <= 'Z')) {
-                    valido = false;
-                }
-            }
+        // TODO comprobar si se pasa bien
+        if (response.equals("1")){
+            registroPosible = true;
         }
         else{
-            valido = false;
+            registroPosible = false;
         }
-
-        return valido;
     }
 
-    private Boolean esNumMatricula(String numMatrStr){
-        Boolean valido = true;
-        int numMatricula;
-        try{
-            numMatricula = Integer.parseInt(numMatrStr);
-            if (0 > numMatricula|| numMatricula > 999){
-                valido = false;
-            }
-        }
-        catch(Exception e){
-            valido = false;
-        }
-        return valido;
-    }
+
 
     private void hideActionBar(){
         final ActionBar actionBar = getSupportActionBar();
@@ -128,6 +97,14 @@ public class RegistroCocheActivity extends AppCompatActivity {
     }
 
     private void initElementos(){
+        try {
+            Conductor conductor = Ctes.getConductorJSON(getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
+            dniSesion = conductor.getDNI();
+        } catch (JSONException e) {
+            Log.i(tag, "Error al sacar conductor de sesion: " + e);
+            Toast.makeText(RegistroCocheActivity.this, "Ocurrió un problema.", Toast.LENGTH_LONG).show();
+        }
+
         this.buttonRegistroCoche = this.findViewById(R.id.buttonRegistroCoche);
         this.editTextMatriculaRegistroCoche = this.findViewById(R.id.editTextMatriculaRegistroCoche);
         this.radioButtonElectricoRegistroCoche = this.findViewById(R.id.radioButtonElectricoRegistroCoche);

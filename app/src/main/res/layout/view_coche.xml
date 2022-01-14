@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gudea"
-        android:text="LS-6282M"
+        android:text="LS628HM"
         android:textAlignment="center"
         android:textColor="#534B38"
         android:textSize="24sp"

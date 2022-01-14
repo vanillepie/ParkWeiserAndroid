@@ -41,6 +41,8 @@ public class CalendarioReservasActivity extends AppCompatActivity {
     private Date ahora;
     private Date fechaSeleccionada;
     private Button reservar;
+    private List<String> diasConcurridos;
+    private List<ReservaEn> reservas;
     private final int[] COLORES = {Color.rgb(78, 153, 3),
             Color.rgb(176, 35, 4)};
 
@@ -79,8 +81,7 @@ public class CalendarioReservasActivity extends AppCompatActivity {
     }
 
     private void getReservas(){
-        // TODO poner servlet
-        String url = Ctes.SERVIDOR + "?DNI=" + dniSesion;
+        String url = Ctes.SERVIDOR + "GetMisReservas?DNI=" + dniSesion;
         CalendarioReservasThread thread = new CalendarioReservasThread(this, url);
         try {
             thread.join();
@@ -88,7 +89,25 @@ public class CalendarioReservasActivity extends AppCompatActivity {
     }
 
     public void setReservas(String response) throws JSONException {
-       // TODO setReservas aniadir eventos
+        reservas = Ctes.getReservasJSON(response);
+        for (int i = 0; i < reservas.size(); i++){
+            setEvento(reservas.get(i).getEntrada(), reservas.get(i).getSalida(), reservas.get(i).getMatricula(), true);
+        }
+    }
+
+    private void getDiasConcurridos(){
+        String url = Ctes.SERVIDOR + "GetAvisosReservas";
+        CalendarioReservasThread thread = new CalendarioReservasThread(this, url);
+        try {
+            thread.join();
+        }catch (InterruptedException e){}
+    }
+
+    public void setDiasConcurridos(String response) throws JSONException {
+        diasConcurridos = Ctes.getDiasConcurridosJSON(response);
+        for (int i = 0; i < diasConcurridos.size(); i++){
+            setEvento(diasConcurridos.get(i), "", "", false);
+        }
     }
 
     private void hideActionBar(){
@@ -97,6 +116,8 @@ public class CalendarioReservasActivity extends AppCompatActivity {
     }
 
     private void initElementos(){
+        getDiasConcurridos();
+
         recyclerReservas = findViewById(R.id.recyclerReservas);
         recyclerReservas.setLayoutManager(new LinearLayoutManager(this));
 
@@ -125,11 +146,11 @@ public class CalendarioReservasActivity extends AppCompatActivity {
             }
         }
 
-        CalendarioReservasAdapter calendarioReservasAdapter = new CalendarioReservasAdapter(reservas, this, dniSesion, Ctes.FORMATO_FECHA.format(fechaSeleccionada));
+        CalendarioReservasAdapter calendarioReservasAdapter = new CalendarioReservasAdapter(reservas, this, Ctes.FORMATO_FECHA.format(fechaSeleccionada));
         recyclerReservas.setAdapter(calendarioReservasAdapter);
     }
 
-    private void setEvento(String fechaEventoEmpieza, String fechaEventoTermina, Boolean esReserva){
+    private void setEvento(String fechaEventoEmpieza, String fechaEventoTermina, String matricula, Boolean esReserva){
         int color;
         if(esReserva){
             color = COLORES[0];
@@ -140,7 +161,7 @@ public class CalendarioReservasActivity extends AppCompatActivity {
 
         String descripcion;
         if(esReserva){
-            descripcion = "Reserva de " + fechaEventoEmpieza.substring(11) + " hasta " + fechaEventoTermina.substring(11);
+            descripcion = "Reserva de " + fechaEventoEmpieza.substring(11) + " hasta " + fechaEventoTermina.substring(11) + " para " + matricula;
         }
         else{
             descripcion = "Día concurrido";

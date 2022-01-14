@@ -23,13 +23,11 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
     private List<Event> eventList;
     private Context context;
     private boolean borradoCorrecto = false;
-    private String dniSesion = "";
     private String diaSeleccionado = "";
 
-    public CalendarioReservasAdapter(List<Event> eventList, Context context, String dniSesion, String diaSeleccionado){
+    public CalendarioReservasAdapter(List<Event> eventList, Context context, String diaSeleccionado){
         this.eventList = eventList;
         this.context = context;
-        this.dniSesion = dniSesion;
         this.diaSeleccionado = diaSeleccionado;
     }
 
@@ -60,9 +58,9 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
             itemView.findViewById(R.id.buttonEliminarReserva).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v){
-                    borrarReserva(diaSeleccionado.substring(0, 10) + " " +
-                            textDescripcionReserva.getText().toString().substring(11, 16) + " " +
-                            textDescripcionReserva.getText().toString().substring(24));
+                    borrarReserva(textDescripcionReserva.getText().toString().substring(34),
+                            diaSeleccionado.substring(0, 10) + "'T'" +
+                            textDescripcionReserva.getText().toString().substring(11, 16));
                     if(borradoCorrecto) {
                         Toast.makeText(context, "Reserva eliminada correctamente.", Toast.LENGTH_LONG).show();
                     }
@@ -74,9 +72,8 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
         }
     }
 
-    private  void borrarReserva(String reserva){
-        // TODO poner nombre servlet
-        String url = Ctes.SERVIDOR + "InicioSesion?DNI=" + dniSesion + "&clave=" + reserva;
+    private  void borrarReserva(String matricula, String entrada){
+        String url = Ctes.SERVIDOR + "EliminarReserva?matricula=" + matricula + "&entrada=" + entrada;
         BorrarReservaThread thread = new BorrarReservaThread(this, url);
         try {
             thread.join();
@@ -84,6 +81,12 @@ public class CalendarioReservasAdapter extends RecyclerView.Adapter <CalendarioR
     }
 
     public void confimarBorrado(String response) throws JSONException {
-        // TODO confirmar que se ha borrado bien
+        // TODO comprobar si se pasa bien
+        if (response.equals("1")){
+            borradoCorrecto = true;
+        }
+        else{
+            borradoCorrecto = false;
+        }
     }
 }

@@ -96,11 +96,11 @@ public class GraficasActivity extends AppCompatActivity {
 
     private void getPlazas(){
         // TODO poner nombre servlet
-        String url = Ctes.SERVIDOR + "servlet";
+        /*String url = Ctes.SERVIDOR + "servlet";
         MapaCalorThread thread = new MapaCalorThread(this, url);
         try {
             thread.join();
-        }catch (InterruptedException e){}
+        }catch (InterruptedException e){}*/
     }
 
     public void setPlazas(String response) throws JSONException {

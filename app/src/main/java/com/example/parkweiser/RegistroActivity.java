@@ -45,9 +45,8 @@ public class RegistroActivity extends AppCompatActivity {
                 String tel = editTextRegistroTelefono.getText().toString();
                 String nombre = editTextRegistroNombre.getText().toString();
 
-                if (esDniValido(dni)){
+                if (Ctes.esDniValido(dni) && Ctes.esTelValido(tel)){
                     getConductor(dni, clave, tel, nombre);
-
                     if(registroPosible) {
                         Intent i = new Intent(RegistroActivity.this, PaginaPrincipalActivity.class);
                         i.putExtra(Ctes.CONDUCTOR_SESION, conductorSesion);
@@ -60,15 +59,14 @@ public class RegistroActivity extends AppCompatActivity {
                 }
 
                 else {
-                    Toast.makeText(RegistroActivity.this, "DNI no es correcto.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistroActivity.this, "DNI o teléfono no son correctos.", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     private void getConductor(String dni, String clave, String tel, String nombre){
-        // TODO pasar datos y nombre servlet
-        String url = Ctes.SERVIDOR + "InicioSesion?DNI=" + dni + "&clave=" + clave;
+        String url = Ctes.SERVIDOR + "RegistrarUsuario?DNI=" + dni + "&clave=" + clave + "&nombre=" + nombre + "&telefono=" + tel;
         RegistroThread thread = new RegistroThread(this, url);
         try {
             thread.join();
@@ -86,34 +84,6 @@ public class RegistroActivity extends AppCompatActivity {
         else{
             registroPosible = false;
         }
-    }
-
-    private Boolean esDniValido(String dni){
-        Boolean valido = true;
-
-        String numDniStr = dni.trim().replaceAll(" ", "").substring(0, 7);
-        char letraDNI = dni.charAt(8);
-        int valNumDni = Integer.parseInt(numDniStr) % 23;
-
-        if (dni.length()!= 9 && esNumDniValido(numDniStr) == false && Ctes.LETRAS_DNI.charAt(valNumDni)!= letraDNI) {
-            valido = false;
-        }
-        return valido;
-    }
-
-    private Boolean esNumDniValido(String numDniStr){
-        Boolean valido = true;
-        int numDni;
-        try{
-            numDni = Integer.parseInt(numDniStr);
-            if (0 > numDni|| numDni > 99999999){
-                valido = false;
-            }
-        }
-        catch(Exception e){
-            valido = false;
-        }
-        return valido;
     }
 
     private void hideActionBar(){

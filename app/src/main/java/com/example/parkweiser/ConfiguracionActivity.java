@@ -28,7 +28,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     private String nombreSesion = "";
     private String telefonoSesion = "";
     private String conductorSesion = "";
-    private Boolean cofiguracionPosible = false;
+    private Boolean configuracionPosible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 if (haCambiadoClave(clave) || haCambiadoNombre(nombre) || haCambiadoTel(telefono)){
                     getConductor(clave, telefono, nombre);
 
-                    if(cofiguracionPosible) {
+                    if(configuracionPosible) {
                         Intent i = new Intent(ConfiguracionActivity.this, PaginaPrincipalActivity.class);
                         i.putExtra(Ctes.CONDUCTOR_SESION, conductorSesion);
                         Log.i(tag, "Conductor anaidido a sesion");
@@ -70,8 +70,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     private void getConductor(String clave, String tel, String nombre){
-        // TODO pasar datos y nombre servlet
-        String url = Ctes.SERVIDOR + "InicioSesion?clave=" + clave + "&telefono=" + tel + "&nombre=" + nombre;
+        String url = Ctes.SERVIDOR + "ModificarUsuario?DNI=" + dniSesion + "&clave=" + clave + "&telefono=" + tel + "&nombre=" + nombre;
         ConfiguracionThread thread = new ConfiguracionThread(this, url);
         try {
             thread.join();
@@ -79,15 +78,12 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     public void setConductor(String response) throws JSONException {
-        conductorSesion = response;
-        JSONObject conductorJSON = new JSONObject(response);
-
-        String dni = conductorJSON.getString("DNI");
-        if (!dni.equals("-1")){
-            cofiguracionPosible = true;
+        // TODO comprobar si se pasa bien
+        if (response.equals("1")){
+            configuracionPosible = true;
         }
         else{
-            cofiguracionPosible = false;
+            configuracionPosible = false;
         }
     }
 

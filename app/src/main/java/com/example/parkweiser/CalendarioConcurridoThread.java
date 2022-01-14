@@ -10,13 +10,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class ReservarThread extends Thread{
+class CalendarioConcurridoThread extends Thread{
 
-    private ReservarAdapter activity;
-    private String tag = "InicioSesionThread";
+    private CalendarioReservasActivity activity;
+    private String tag = "CalendarioConcurridoThread";
     private String urlStr = "";
 
-    public ReservarThread(ReservarAdapter activ, String url) {
+    public CalendarioConcurridoThread(CalendarioReservasActivity activ, String url) {
         activity = activ;
         urlStr = url;
         start();
@@ -30,15 +30,17 @@ class ReservarThread extends Thread{
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            response =  Ctes.convertStreamToString(in);
-            Log.d(tag, "Respuesta JSON reserva: " + response);
+            response = Ctes.convertStreamToString(in);
+            Log.d(tag, "Respuesta JSON consultar dias concurridos: " + response);
 
-            activity.confirmaReserva(response);
+            activity.setDiasConcurridos(response);
         }
         catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
+
+
 }
 
 

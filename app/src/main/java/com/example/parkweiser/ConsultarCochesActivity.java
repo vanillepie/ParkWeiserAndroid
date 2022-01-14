@@ -59,7 +59,6 @@ public class ConsultarCochesActivity extends AppCompatActivity {
             Toast.makeText(ConsultarCochesActivity.this, "Ocurrió un problema.", Toast.LENGTH_LONG).show();
         }
         getCoches();
-
         recyclerAutos = findViewById(R.id.recyclerCoches);
         recyclerAutos.setLayoutManager(new LinearLayoutManager(this));
         consultarCochesAdapter = new ConsultarCochesAdapter(coches, this);
@@ -69,8 +68,7 @@ public class ConsultarCochesActivity extends AppCompatActivity {
     }
 
     private void getCoches(){
-        // TODO poner nombre servlet
-        String url = Ctes.SERVIDOR + "?DNI=" + dniSesion;
+        String url = Ctes.SERVIDOR + "GetMisVehiculos?DNI="+ dniSesion;
         ConsultarCochesThread thread = new ConsultarCochesThread(this, url);
         try {
             thread.join();
@@ -78,7 +76,7 @@ public class ConsultarCochesActivity extends AppCompatActivity {
     }
 
     public void setCoches(String response) throws JSONException {
-        // TODO sacar lista de coches y settear
+        coches = Ctes.getCochesJSON(response);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class MapaCalorActivity extends AppCompatActivity {
             Color.rgb(219, 93, 35)};
 
     private static List<TextView> mapa;
-    private List<Plaza> plazas;
+    private List<OcupacionFecha> ocupaciones;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
 
@@ -63,18 +63,17 @@ public class MapaCalorActivity extends AppCompatActivity {
     }
 
     private void pintarMapaCalor(String dia){
-        ArrayList<OcupacionFecha> valores;
-        for (int i = 0; i < plazas.size(); i++){
-            valores = plazas.get(i).getValores();
-
-            for(int j = 0; j < valores.size(); i++){
-                if(valores.get(j).getFecha().equals(dia)){
-                    pintarPlaza(i, valores.get(j).getOcupacion());
-                }
-                else{
-                    pintarPlaza(i, -1);
-                }
+        pintarMapaCalorDefault();
+        for (int i = 0; i < ocupaciones.size(); i++){
+            if(ocupaciones.get(i).getFecha().contains(dia)){
+                pintarPlaza(ocupaciones.get(i).getPlaza(), ocupaciones.get(i).getOcupacion());
             }
+        }
+    }
+
+    private void pintarMapaCalorDefault(){
+        for (int i = 0; i < mapa.size(); i++){
+            pintarPlaza(i, -1);
         }
     }
 
@@ -103,9 +102,9 @@ public class MapaCalorActivity extends AppCompatActivity {
         mapa.get(idPlaza).setBackgroundColor(color);
     }
 
-    private void getPlazas(){
+    private void getOcupaciones(){
         // TODO poner nombre servlet
-        String url = Ctes.SERVIDOR + "servlet";
+        String url = Ctes.SERVIDOR + "GetOcupacionesPlazasPorDia";
         MapaCalorThread thread = new MapaCalorThread(this, url);
         try {
             thread.join();
@@ -113,7 +112,7 @@ public class MapaCalorActivity extends AppCompatActivity {
     }
 
     public void setPlazas(String response) throws JSONException {
-        // TODO sacar lista de plazas
+        ocupaciones = Ctes.getOcupacionesJSON(response);
     }
 
     private void hideActionBar(){
@@ -122,7 +121,7 @@ public class MapaCalorActivity extends AppCompatActivity {
     }
 
     private void initElementos() {
-        getPlazas();
+        getOcupaciones();
 
         initMapa();
         textMes = findViewById(R.id.textMesMapa);
