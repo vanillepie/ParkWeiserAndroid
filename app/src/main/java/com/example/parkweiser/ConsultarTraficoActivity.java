@@ -62,6 +62,7 @@ public class ConsultarTraficoActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.i(tag, "Ir a Pagina Principal");
         Intent i = new Intent(ConsultarTraficoActivity.this, PaginaPrincipalActivity.class);
+        i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
         startActivity(i);
         finish();
     }

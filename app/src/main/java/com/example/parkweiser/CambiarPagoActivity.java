@@ -115,6 +115,7 @@ public class CambiarPagoActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.i(tag, "Ir a Pagos");
         Intent i = new Intent(CambiarPagoActivity.this, PagosActivity.class);
+        i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
         startActivity(i);
         finish();
     }

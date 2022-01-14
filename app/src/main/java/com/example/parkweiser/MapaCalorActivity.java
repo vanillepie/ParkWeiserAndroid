@@ -136,6 +136,7 @@ public class MapaCalorActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.i(tag, "Ir a Consultar Trafico");
         Intent i = new Intent(MapaCalorActivity.this, ConsultarTraficoActivity.class);
+        i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
         startActivity(i);
         finish();
     }

@@ -84,6 +84,7 @@ public class PagosActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.i(tag, "Ir a Pagina Principal");
         Intent i = new Intent(PagosActivity.this, PaginaPrincipalActivity.class);
+        i.putExtra(Ctes.CONDUCTOR_SESION, getIntent().getStringExtra(Ctes.CONDUCTOR_SESION));
         startActivity(i);
         finish();
     }
