@@ -12,12 +12,12 @@ import java.net.URL;
 
 class ReservarThread extends Thread{
 
-    private ReservarAdapter activity;
-    private String tag = "InicioSesionThread";
+    private ReservarAdapter adapter;
+    private String tag = "ReservarThread";
     private String urlStr = "";
 
-    public ReservarThread(ReservarAdapter activ, String url) {
-        activity = activ;
+    public ReservarThread(ReservarAdapter adapter, String url) {
+        this.adapter = adapter;
         urlStr = url;
         start();
     }
@@ -33,7 +33,7 @@ class ReservarThread extends Thread{
             response =  Ctes.convertStreamToString(in);
             Log.d(tag, "Respuesta JSON reserva: " + response);
 
-            activity.confirmaReserva(response);
+            adapter.confirmaReserva(response);
         }
         catch (IOException | JSONException e) {
             e.printStackTrace();
