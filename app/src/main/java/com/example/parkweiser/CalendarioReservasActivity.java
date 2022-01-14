@@ -97,7 +97,7 @@ public class CalendarioReservasActivity extends AppCompatActivity {
 
     private void getDiasConcurridos(){
         String url = Ctes.SERVIDOR + "GetAvisosReservas";
-        CalendarioReservasThread thread = new CalendarioReservasThread(this, url);
+        CalendarioConcurridoThread thread = new CalendarioConcurridoThread(this, url);
         try {
             thread.join();
         }catch (InterruptedException e){}
