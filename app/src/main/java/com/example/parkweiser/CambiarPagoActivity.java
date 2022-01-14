@@ -39,7 +39,7 @@ public class CambiarPagoActivity extends AppCompatActivity {
 
                 String tarjeta = editTextTarjeta.getText().toString();
 
-                if (haCambiadoTarjeta(tarjeta) && Ctes.isTarjetaValida(tarjeta)){
+                if (Ctes.isTarjetaValida(tarjeta)){
                     getConductor(tarjeta);
 
                     if(cambioPosible) {
@@ -80,14 +80,6 @@ public class CambiarPagoActivity extends AppCompatActivity {
         else{
             cambioPosible = false;
         }
-    }
-
-    private Boolean haCambiadoTarjeta(String tarjeta){
-        Boolean valido = false;
-        if (!this.tarjetaSesion.equals(tarjeta)){
-            valido = true;
-        }
-        return valido;
     }
 
     private void hideActionBar(){
